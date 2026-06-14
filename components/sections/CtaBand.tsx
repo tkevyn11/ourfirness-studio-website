@@ -27,7 +27,7 @@ export function CtaBand() {
             <Button
               href="/contact"
               variant="outline"
-              className="border-white/60 bg-transparent text-white hover:bg-white/10 px-8 py-4 text-base"
+              className="border-2 border-white bg-white text-brand-plum hover:border-white hover:bg-white hover:text-brand-coral px-8 py-4 text-base shadow-sm"
             >
               Contact & Location
             </Button>

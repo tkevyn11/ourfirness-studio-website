@@ -27,6 +27,7 @@ export function Button({
   className,
   external = false,
 }: ButtonProps) {
+  // className last so tailwind-merge resolves conflicts with variant utilities
   const classes = cn(
     "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-coral focus-visible:ring-offset-2",
     variants[variant],
