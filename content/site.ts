@@ -1,5 +1,10 @@
 export const siteConfig = {
   name: "Our Fitness Studio",
+  logo: {
+    svg: "/ourfitness-logo.svg",
+    png: "/ourfitness-logo-transparent.png",
+    alt: "Ourfitness Studio logo",
+  },
   tagline: "Fun Zumba dance fitness for everyone in Melaka",
   description:
     "Our Fitness Studio offers beginner-friendly Zumba classes in Taman Kota Laksamana, Melaka. No dance experience needed. Join a welcoming community and try a class today.",

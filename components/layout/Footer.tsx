@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Instagram, Facebook, MapPin, Phone } from "lucide-react";
 import { siteConfig, whatsappUrl } from "@/content/site";
+import { Logo } from "@/components/layout/Logo";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -9,8 +10,14 @@ export function Footer() {
     <footer className="mt-auto border-t border-brand-plum/10 bg-brand-plum text-white">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <p className="font-display text-xl font-bold">{siteConfig.name}</p>
-          <p className="mt-2 text-sm text-white/70 leading-relaxed">
+          <Link
+            href="/"
+            className="rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-coral"
+            aria-label={`${siteConfig.name} home`}
+          >
+            <Logo variant="footer" />
+          </Link>
+          <p className="mt-3 text-sm text-white/70 leading-relaxed">
             Beginner-friendly Zumba classes in Taman Kota Laksamana, Melaka.
             Move, sweat, and smile with us.
           </p>

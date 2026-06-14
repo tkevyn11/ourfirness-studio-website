@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Sparkles } from "lucide-react";
 import { siteConfig, whatsappUrl } from "@/content/site";
 import { Button } from "@/components/ui/Button";
@@ -7,11 +8,20 @@ import { FadeIn } from "@/components/motion/FadeIn";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-brand-cream via-brand-warm to-brand-coral/10">
-      <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-brand-coral/20 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-16 -left-16 h-64 w-64 rounded-full bg-brand-teal/20 blur-3xl" />
+    <section className="relative overflow-hidden bg-brand-cream">
+      <Image
+        src="/images/hero-background.png"
+        alt="Background"
+        fill
+        priority
+        className="object-cover object-center"
+      />
+      <div className="absolute inset-0 bg-gradient-to-br from-brand-cream/90 via-brand-warm/80 to-brand-coral/40" />
 
-      <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-2 lg:gap-16">
+      <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-brand-coral/20 blur-3xl z-0" />
+      <div className="pointer-events-none absolute -bottom-16 -left-16 h-64 w-64 rounded-full bg-brand-teal/20 blur-3xl z-0" />
+
+      <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-2 lg:gap-16">
         <FadeIn>
           <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-brand-coral/10 px-4 py-1.5 text-sm font-semibold text-brand-coral">
             <Sparkles className="h-4 w-4" aria-hidden />
@@ -41,18 +51,14 @@ export function Hero() {
         </FadeIn>
 
         <FadeIn delay={0.15} direction="left">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-gradient-to-br from-brand-coral via-brand-orange to-brand-teal shadow-2xl shadow-brand-coral/20">
-            <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center text-white">
-              <p className="text-sm font-semibold uppercase tracking-widest opacity-80">
-                Studio Gallery
-              </p>
-              <p className="mt-3 font-display text-2xl font-bold sm:text-3xl">
-                [Images To Be Added Later]
-              </p>
-              <p className="mt-2 text-sm opacity-80">
-                Real class photos coming soon
-              </p>
-            </div>
+          <div className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-brand-cream shadow-2xl shadow-brand-coral/20">
+            <Image
+              src="/images/hero-main.png"
+              alt="Zumba class in action"
+              fill
+              priority
+              className="object-cover"
+            />
           </div>
         </FadeIn>
       </div>

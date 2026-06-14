@@ -8,7 +8,7 @@ export function organizationSchema() {
     "@type": "Organization",
     name: siteConfig.name,
     url: siteConfig.url,
-    logo: `${siteConfig.url}/og-image.svg`,
+    logo: `${siteConfig.url}${siteConfig.logo.svg}`,
     description: siteConfig.description,
     sameAs: [siteConfig.social.instagram, siteConfig.social.facebook],
     contactPoint: {

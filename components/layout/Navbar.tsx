@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { siteConfig, whatsappUrl } from "@/content/site";
 import { Button } from "@/components/ui/Button";
+import { Logo } from "@/components/layout/Logo";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
@@ -15,12 +16,10 @@ export function Navbar() {
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
         <Link
           href="/"
-          className="group flex flex-col leading-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-coral focus-visible:ring-offset-2 rounded-lg"
+          className="group rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-coral focus-visible:ring-offset-2"
+          aria-label={`${siteConfig.name} home`}
         >
-          <span className="font-display text-lg font-bold text-brand-plum group-hover:text-brand-coral transition-colors">
-            {siteConfig.name}
-          </span>
-          <span className="text-xs text-brand-plum/60">Zumba · Melaka</span>
+          <Logo showTagline variant="navbar" />
         </Link>
 
         <nav
