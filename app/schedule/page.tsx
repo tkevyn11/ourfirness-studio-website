@@ -6,7 +6,7 @@ import { CtaBand } from "@/components/sections/CtaBand";
 import { Section } from "@/components/sections/Section";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { scheduleMetadata } from "@/lib/metadata";
-import { breadcrumbSchema, faqPageSchema } from "@/lib/schema";
+import { breadcrumbSchema, faqPageSchema, classEventListSchema, pricingOffersSchema } from "@/lib/schema";
 
 export const metadata: Metadata = scheduleMetadata;
 
@@ -20,6 +20,8 @@ export default function SchedulePage() {
             { name: "Schedule & Pricing", path: "/schedule" },
           ]),
           faqPageSchema(),
+          ...classEventListSchema(),
+          ...pricingOffersSchema(),
         ]}
       />
 
@@ -29,12 +31,12 @@ export default function SchedulePage() {
             Plan Your Visit
           </p>
           <h1 className="mt-2 font-display text-4xl font-bold text-brand-plum sm:text-5xl">
-            Zumba Class Schedule & Pricing in Melaka
+            Class Schedule & Pricing in Melaka
           </h1>
           <p className="mt-4 text-lg leading-relaxed text-brand-plum/75">
-            Find a class time that works for you and explore flexible pricing
-            options. Message us on WhatsApp to confirm availability and join your
-            first session.
+            Morning and evening sessions Monday to Friday. Try your first class
+            for RM10, then choose walk-in or package pricing that fits your
+            routine.
           </p>
         </div>
       </Section>

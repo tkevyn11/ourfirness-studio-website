@@ -8,11 +8,11 @@ export function ClassTypes() {
     <Section id="classes" variant="warm">
       <SectionHeader
         eyebrow="Our Classes"
-        title="Zumba Class Types for Every Level"
-        description="From high-energy dance fitness to gentle low-impact sessions — find the class that fits you."
+        title="Six Ways to Move at OurFitness Studio"
+        description="From dance cardio and rebounder sessions to TRX strength and HIIT. Find the class that fits your goals."
       />
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {classes.map((cls, index) => (
+        {classes.slice(0, 3).map((cls, index) => (
           <ClassCard key={cls.id} cls={cls} index={index} />
         ))}
       </div>

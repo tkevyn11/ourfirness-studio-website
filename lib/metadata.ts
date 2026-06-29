@@ -38,36 +38,36 @@ export function createMetadata({ title, description, path }: PageMeta): Metadata
 }
 
 export const homeMetadata = createMetadata({
-  title: `Zumba Classes in Melaka | ${siteConfig.name}`,
+  title: `Zumba, TRX & HIIT Classes in Melaka | ${siteConfig.name}`,
   description:
-    "Fun, beginner-friendly Zumba dance-fitness classes in Taman Kota Laksamana, Melaka. No experience needed. Try a class - message us on WhatsApp today.",
+    "Fun group fitness in Taman Kota Laksamana, Melaka. Zumba, Tabata, TRX, Fitbounce, Strong Nation, and Circuit Training. Try your first class for RM10.",
   path: "/",
 });
 
 export const classesMetadata = createMetadata({
-  title: `Zumba Class Types for Beginners | ${siteConfig.name}`,
+  title: `Zumba, TRX, HIIT & Fitbounce Classes in Melaka | ${siteConfig.name}`,
   description:
-    "Explore Zumba Fitness, Zumba Gold, and Zumba Toning classes in Melaka. Beginner-friendly dance workouts with instructor Pearly Kong.",
+    "Explore 6 class types at OurFitness Studio in Melaka: Zumba, Tabata, TRX, Fitbounce, Strong Nation, and Circuit Training. Beginner-friendly sessions with instructor Pearly Kong.",
   path: "/classes",
 });
 
 export const scheduleMetadata = createMetadata({
-  title: `Zumba Class Schedule & Pricing in Melaka | ${siteConfig.name}`,
+  title: `Class Schedule & Pricing in Melaka | RM10 First Session | ${siteConfig.name}`,
   description:
-    "View Zumba class times and pricing at Our Fitness Studio in Taman Kota Laksamana, Melaka. Drop-in, monthly, and bundle options available.",
+    "View weekly class times and pricing at OurFitness Studio, Melaka. Morning and evening sessions Monday to Friday. First trial RM10, unlimited monthly RM160.",
   path: "/schedule",
 });
 
 export const aboutMetadata = createMetadata({
   title: `About ${siteConfig.name} & Instructor ${siteConfig.instructor.name}`,
   description:
-    `Meet ${siteConfig.instructor.name} and learn about Our Fitness Studio — a welcoming Zumba community in Melaka for all fitness levels.`,
+    `Meet ${siteConfig.instructor.name} and learn about OurFitness Studio, a welcoming group fitness community in Taman Kota Laksamana, Melaka for all fitness levels.`,
   path: "/about",
 });
 
 export const contactMetadata = createMetadata({
-  title: `Contact & Location | Zumba Studio in Melaka | ${siteConfig.name}`,
+  title: `Contact & Location | Fitness Studio in Melaka | ${siteConfig.name}`,
   description:
-    "Find Our Fitness Studio at Jalan KLJ 6, Taman Kota Laksamana, Melaka. Call 014-6067687 or message us on WhatsApp to join a class.",
+    "Find OurFitness Studio at Jalan KLJ 6, Taman Kota Laksamana, Melaka. Call 014-6067687 or message us on WhatsApp to join a class.",
   path: "/contact",
 });

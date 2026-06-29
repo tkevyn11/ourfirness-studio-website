@@ -1,6 +1,14 @@
 import { siteConfig, whatsappUrl } from "@/content/site";
 import { faqs } from "@/content/faqs";
 import { classes } from "@/content/classes";
+import { pricing, pricingSpecialDeal } from "@/content/pricing";
+import { schedule } from "@/content/schedule";
+
+function parseDuration(duration: string): string {
+  const match = duration.match(/(\d+)/);
+  if (!match) return "PT60M";
+  return `PT${match[1]}M`;
+}
 
 export function organizationSchema() {
   return {
@@ -11,6 +19,15 @@ export function organizationSchema() {
     logo: `${siteConfig.url}${siteConfig.logo.svg}`,
     description: siteConfig.description,
     sameAs: [siteConfig.social.instagram, siteConfig.social.facebook],
+    knowsAbout: [
+      "Zumba",
+      "HIIT",
+      "TRX Training",
+      "Fitbounce",
+      "Tabata",
+      "Circuit Training",
+      "Group Fitness",
+    ],
     contactPoint: {
       "@type": "ContactPoint",
       telephone: siteConfig.phone,
@@ -29,6 +46,34 @@ export function websiteSchema() {
     url: siteConfig.url,
     description: siteConfig.description,
     inLanguage: "en-MY",
+  };
+}
+
+function pricingOfferCatalog() {
+  const catalogItems = pricing.map((tier) => ({
+    "@type": "Offer",
+    name: tier.name,
+    price: tier.price.replace(/[^\d.]/g, ""),
+    priceCurrency: "MYR",
+    description: tier.description,
+    url: whatsappUrl(siteConfig.whatsappMessages.pricing),
+    availability: "https://schema.org/InStock",
+  }));
+
+  catalogItems.push({
+    "@type": "Offer",
+    name: pricingSpecialDeal.title,
+    price: pricingSpecialDeal.price.replace(/[^\d.]/g, ""),
+    priceCurrency: "MYR",
+    description: pricingSpecialDeal.description,
+    url: whatsappUrl(siteConfig.whatsappMessages.pricing),
+    availability: "https://schema.org/InStock",
+  });
+
+  return {
+    "@type": "OfferCatalog",
+    name: "OurFitness Studio Class Pricing",
+    itemListElement: catalogItems,
   };
 }
 
@@ -65,6 +110,16 @@ export function healthClubSchema() {
       })),
     sameAs: [siteConfig.social.instagram, siteConfig.social.facebook],
     hasMap: siteConfig.mapLink,
+    knowsAbout: [
+      "Zumba",
+      "HIIT",
+      "TRX Training",
+      "Fitbounce",
+      "Tabata",
+      "Circuit Training",
+      "Group Fitness",
+    ],
+    hasOfferCatalog: pricingOfferCatalog(),
   };
 }
 
@@ -102,6 +157,9 @@ export function courseListSchema() {
     "@type": "Course",
     name: cls.name,
     description: cls.description,
+    image: `${siteConfig.url}${cls.image.src}`,
+    timeRequired: parseDuration(cls.duration),
+    courseMode: "https://schema.org/OfflineAttendance",
     provider: {
       "@type": "HealthClub",
       name: siteConfig.name,
@@ -110,7 +168,105 @@ export function courseListSchema() {
     offers: {
       "@type": "Offer",
       url: whatsappUrl(siteConfig.whatsappMessages.pricing),
+      price: "10",
+      priceCurrency: "MYR",
+      description: "First trial session for new members",
       availability: "https://schema.org/InStock",
     },
   }));
+}
+
+function to24Hour(time: string): string {
+  const match = time.match(/(\d+):(\d+)\s*(AM|PM)/i);
+  if (!match) return "08:30";
+  let hour = parseInt(match[1], 10);
+  const minute = match[2];
+  const period = match[3].toUpperCase();
+  if (period === "PM" && hour !== 12) hour += 12;
+  if (period === "AM" && hour === 12) hour = 0;
+  return `${hour.toString().padStart(2, "0")}:${minute}`;
+}
+
+export function classEventListSchema() {
+  const grouped = new Map<string, (typeof schedule)[number][]>();
+
+  for (const row of schedule) {
+    const key = row.className;
+    const existing = grouped.get(key) ?? [];
+    existing.push(row);
+    grouped.set(key, existing);
+  }
+
+  return Array.from(grouped.entries()).map(([className, rows]) => {
+    const days = [...new Set(rows.map((row) => row.day))];
+    const first = rows[0];
+    const lastTime = rows[rows.length - 1].time;
+    const endMatch = lastTime.match(/–\s*(.+)$/);
+    const startMatch = first.time.match(/^(.+?)\s*–/);
+
+    return {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      name: `${className} Class at ${siteConfig.name}`,
+      description: `Weekly ${className} group fitness class in Melaka.`,
+      eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+      eventSchedule: {
+        "@type": "Schedule",
+        repeatFrequency: "P1W",
+        byDay: days,
+        startTime: startMatch ? to24Hour(startMatch[1]) : "08:30",
+        endTime: endMatch ? to24Hour(endMatch[1]) : "09:30",
+      },
+      location: {
+        "@type": "Place",
+        name: siteConfig.name,
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: siteConfig.address.street,
+          addressLocality: siteConfig.address.city,
+          postalCode: siteConfig.address.postalCode,
+          addressCountry: "MY",
+        },
+      },
+      organizer: {
+        "@type": "Organization",
+        name: siteConfig.name,
+        url: siteConfig.url,
+      },
+      offers: {
+        "@type": "Offer",
+        price: "10",
+        priceCurrency: "MYR",
+        url: whatsappUrl(siteConfig.whatsappMessages.schedule),
+        availability: "https://schema.org/InStock",
+      },
+    };
+  });
+}
+
+export function pricingOffersSchema() {
+  return pricing.map((tier) => {
+    const classCountMatch = tier.period.match(/^(\d+)\s+class/i);
+    const offer: Record<string, unknown> = {
+      "@context": "https://schema.org",
+      "@type": "Offer",
+      name: tier.name,
+      price: tier.price.replace(/[^\d.]/g, ""),
+      priceCurrency: "MYR",
+      description: tier.description,
+      url: whatsappUrl(siteConfig.whatsappMessages.pricing),
+      availability: "https://schema.org/InStock",
+      priceValidUntil: "2027-12-31",
+    };
+
+    if (classCountMatch) {
+      offer.eligibleQuantity = {
+        "@type": "QuantitativeValue",
+        value: parseInt(classCountMatch[1], 10),
+        unitText: "class",
+      };
+    }
+
+    return offer;
+  });
 }
