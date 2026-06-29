@@ -6,7 +6,7 @@
 
 A conversion-optimized marketing website for a fitness studio, featuring advanced SEO/structured data implementation and content-driven architecture.
 
-![Hero Section](docs/screenshots/hero.png)
+![Hero Section](docs/screenshots/hero.PNG)
 
 ## Project Overview
 
@@ -47,12 +47,12 @@ Built for a fitness studio offering multiple class types (Zumba, HIIT, TRX, circ
 
 <table>
   <tr>
-    <td><img src="docs/screenshots/schedule.png" alt="Interactive Schedule" /></td>
-    <td><img src="docs/screenshots/pricing.png" alt="Tiered Pricing" /></td>
+    <td><img src="docs/screenshots/schedule.PNG" alt="Interactive Schedule" /></td>
+    <td><img src="docs/screenshots/pricing.PNG" alt="Tiered Pricing" /></td>
   </tr>
   <tr>
-    <td><img src="docs/screenshots/classes.png" alt="Class Types" /></td>
-    <td><img src="docs/screenshots/mobile.png" alt="Mobile View" /></td>
+    <td><img src="docs/screenshots/classes.PNG" alt="Class Types" /></td>
+    <td><img src="docs/screenshots/mobile.PNG" alt="Mobile View" /></td>
   </tr>
 </table>
 
