@@ -1,6 +1,7 @@
 {
   "name": "zumba-studio",
   "version": "0.1.0",
+  "description": "Conversion-optimized fitness studio website with Schema.org structured data, interactive scheduling, and content-driven architecture. Built with Next.js 16, TypeScript, and Tailwind CSS.",
   "private": true,
   "scripts": {
     "dev": "next dev",
